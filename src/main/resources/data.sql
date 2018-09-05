@@ -1,0 +1,1 @@
+INSERT INTO category(id,name ,description) values(999,'Hot new' ,'Hot new in Cambodai');
