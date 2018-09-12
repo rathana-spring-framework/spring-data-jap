@@ -1,4 +1,4 @@
-package com.rathana.jpa.cotroller
+package com.rathana.jpa.controller
 
 import com.rathana.jpa.entity.Category
 import com.rathana.jpa.service.CategoryService
@@ -20,7 +20,8 @@ class CategoryController {
          val map:MutableMap<String, Any> = mutableMapOf()
 
         try {
-            if(this.cateService.add(category)){
+            val category=cateService.add(category)
+            if(category!=null){
                 map.put("message","create category successfully")
                 map.put("code",200)
                 map.put("status",true)
@@ -30,14 +31,18 @@ class CategoryController {
                 map.put("message","have an error")
                 map.put("code",500)
                 map.put("status",false)
-                map.put("data",{})
+                map.put("data",category)
             }
 
         }catch (ex : Exception){
             ex.printStackTrace()
+            map.put("message","have an error")
+            map.put("code",500)
+            map.put("status",false)
+            map.put("data",category)
         }
 
-        return ResponseEntity<MutableMap<String,Any>>(map,HttpStatus.OK)
+        return ResponseEntity(map,HttpStatus.OK)
     }
 
     @GetMapping("/get-all")
@@ -64,6 +69,6 @@ class CategoryController {
             ex.printStackTrace()
         }
 
-        return ResponseEntity<MutableMap<String,Any>>(map,HttpStatus.OK)
+        return ResponseEntity(map,HttpStatus.OK)
     }
 }

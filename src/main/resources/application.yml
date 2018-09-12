@@ -1,4 +1,14 @@
 spring:
-  h2:
-    console:
-      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
+
+
+  datasource:
+    #url: jdbc:mysql://35.185.189.86:3306/jpa_db
+    url: jdbc:mysql://35.185.189.86:3306/jpa_db?autoReconnect=true&useSSL=false
+    username: root
+    password: Dbserver123!@#
+    driver-class-name: com.mysql.jdbc.Driver

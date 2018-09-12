@@ -4,7 +4,7 @@ import com.rathana.jpa.entity.Category
 
 interface CategoryService {
     fun getAll(): MutableList<Category>
-    fun add(category: Category):Boolean
+    fun add(category: Category):Category
     fun delete(id: Int)
     fun edit(category: Category)
 

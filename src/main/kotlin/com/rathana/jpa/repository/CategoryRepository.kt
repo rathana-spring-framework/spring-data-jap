@@ -7,6 +7,6 @@ import org.springframework.data.repository.Repository
 interface CategoryRepository : Repository<Category,Long>{
 
     fun findAll(): MutableList<Category>
-    fun save(category: Category) : Boolean
+    fun save(category: Category) : Category
 
 }

@@ -17,7 +17,7 @@ class CategoryServiceImpl : CategoryService {
     override fun getAll(): MutableList<Category> =this.cateRepo.findAll()
 
 
-    override fun add(category: Category) : Boolean {
+    override fun add(category: Category) : Category {
         return this.cateRepo.save(category)
     }
 
