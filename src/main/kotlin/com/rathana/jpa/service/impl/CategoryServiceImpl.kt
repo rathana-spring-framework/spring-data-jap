@@ -3,14 +3,13 @@ package com.rathana.jpa.service.impl
 import com.rathana.jpa.entity.Category
 import com.rathana.jpa.repository.CategoryRepository
 import com.rathana.jpa.service.CategoryService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
 class CategoryServiceImpl : CategoryService {
 
     var cateRepo: CategoryRepository
-    public constructor(cateRepo: CategoryRepository){
+    constructor(cateRepo: CategoryRepository){
         this.cateRepo= cateRepo
     }
 
@@ -21,11 +20,15 @@ class CategoryServiceImpl : CategoryService {
         return this.cateRepo.save(category)
     }
 
-    override fun delete(id: Int) {
-
+    override fun delete(category: Category){
+        cateRepo.delete(category)
     }
 
     override fun edit(category: Category) {
 
     }
+
+    override fun findById(id: Int): Category = cateRepo.findById(id)
+
+    override fun findByName(name: String): Category = cateRepo.findByName(name)
 }

@@ -2,6 +2,7 @@ package com.rathana.jpa.controller
 
 import com.rathana.jpa.entity.Category
 import com.rathana.jpa.service.CategoryService
+import com.rathana.jpa.util.ResponseEntityHelper
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("api/v1")
 class CategoryController {
     var cateService: CategoryService
-    public constructor(cateService: CategoryService){
+    constructor(cateService: CategoryService){
         this.cateService=cateService
     }
 
@@ -71,4 +72,18 @@ class CategoryController {
 
         return ResponseEntity(map,HttpStatus.OK)
     }
+
+    @DeleteMapping("{id}/delete")
+    fun delete(@PathVariable("id") id: Long): ResponseEntity<MutableMap<String,Any?>>{
+        val responseEntityHelper= ResponseEntityHelper<Long>()
+        val category=Category(id,null,null)
+        cateService.delete(category)
+        return responseEntityHelper.create(null,ResponseEntityHelper.DELETE)
+    }
+   /* fun findById(): ResponseEntity<MutableMap<String,Any?>>{
+
+    }
+    fun findByName(): ResponseEntity<MutableMap<String,Any?>>{
+
+    }*/
 }
